@@ -1,0 +1,12 @@
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    - if !@page.nil? 
+      %title 
+        = @page.title
+      %meta{:name=>"keywords", :content => @page.keywords }
+      %meta{:name=>"description", :content => @page.description }
+    %link{:rel => "stylesheet", :href => "/css/main.css", :type => "text/css", :media => "all"}
+  %body
+    %div{:id => "contents"}
+      = yield
