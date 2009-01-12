@@ -1,4 +1,4 @@
-%w{rubygems sinatra RedCloth}.each {|gem| require gem}
+%w{rubygems sinatra Git RedCloth}.each {|gem| require gem}
 Dir["models/**/*.rb"].each {|file| load file}
 
 get "/" do
@@ -13,4 +13,16 @@ get "/:url.html" do
   end
   
   haml :page
+end
+
+get "/new" do
+end
+
+post "/" do
+end
+
+put "/:url.html" do
+end
+
+delete "/:url.html" do
 end

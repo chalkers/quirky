@@ -1,0 +1,6 @@
+--- !ruby/object:Page 
+content: |-
+  h1. You've done it.
+  You've installed quirky!
+title: Congratulations!
+url: index.html
