@@ -1,5 +1,5 @@
-%w{rubygems sinatra Git RedCloth}.each {|gem| require gem}
-Dir["models/**/*.rb"].each {|file| load file}
+require 'boot'
+require 'sinatra'
 
 get "/" do
   redirect "/index.html"
