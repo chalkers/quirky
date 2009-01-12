@@ -6,6 +6,11 @@ get "/" do
 end
 
 get "/:url.html" do
-  @page = Page.find(params[:url] + ".html")
+  begin
+    @page = Page.find(params[:url] + ".html") 
+  rescue
+    throw :halt, [404, "File not found"]
+  end
+  
   haml :page
 end
