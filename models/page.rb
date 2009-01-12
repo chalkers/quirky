@@ -7,6 +7,6 @@ class Page
    end
    
    def self.find(url)
-     File.open("system/#{url}.yaml") { |file| YAML.load(file) }
+     YAML.load(File.open("system/#{url}.yaml"))
    end
 end

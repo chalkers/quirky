@@ -1,5 +1,9 @@
 require 'git'
+
 Dir["models/**/*.rb"].each {|file| load file}
+
+task :default => :bootstrap
+
 desc "Bootstrap the application"
 task :bootstrap do
     puts "Bootstrapping Application.."

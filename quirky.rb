@@ -1,10 +1,11 @@
-%w{rubygems sinatra git grit}.each {|gem| require gem}
+%w{rubygems sinatra RedCloth}.each {|gem| require gem}
 Dir["models/**/*.rb"].each {|file| load file}
 
 get "/" do
   redirect "/index.html"
 end
 
-get "/index.html" do
-  @page = Page.find("index.html")
+get "/:url.html" do
+  @page = Page.find(params[:url] + ".html")
+  haml :page
 end
