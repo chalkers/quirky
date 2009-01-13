@@ -4,7 +4,7 @@ Quriky is Content Management System (CMS) built on Sinatra and git.
 
 == Installation
 
-  sudo gem install Git sinatra
+  sudo gem install git sinatra
 
   git clone git://github.com/chalkers/quirky.git
 
@@ -18,7 +18,7 @@ or simply
 
 == Gems
 
-To require any aditional gems modify the boot.rb
+To require any additional gems modify the boot.rb
 
 == Models
 
