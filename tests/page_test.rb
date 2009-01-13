@@ -38,6 +38,12 @@ class PageTest < Test::Unit::TestCase
         assert_equal @page_description, p.description                                  
     end
 
+    def test_2_find_error
+      assert_raise QuirkyException, LoadError do 
+        Page.find(@page_url + " ")
+      end
+    end
+
     def test_3_update
         p = Page.find(@page_url)
         p.title =  @page_title + " Updated"
@@ -58,4 +64,11 @@ class PageTest < Test::Unit::TestCase
         Page.destroy(@page_url)
         assert !File.exist?(QREPOSITORY_PATH + "/#{@page_url}.yaml"), "File #{@page_url}.yaml still exist"
     end
+
+    def test_4_destroy_error
+        assert_raises QuirkyException, LoadError do
+          Page.destroy(@page_url +" ")
+        end
+    end
+
 end

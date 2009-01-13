@@ -1,0 +1,14 @@
+%form{:action=>"/"+@page.url,:method=>"post"}
+  %input{:type=>"hidden", :name=>"_method", :value="put"}
+  -%w{title description keywords}.each do |f|
+    %label{:for=>"page_#{f}"}=f.capitalize
+    %input{:type=>"text",:id=>"page_#{f}", :name=>"page[#{f}]",:value=>@page.send(f)}
+    %br
+  %label{:for=>"page_content"} Content
+  %textarea{:type=>"text",:id=>"page_content", :name=>"page[content]"}=@page.content
+  %br
+  %input{:type=>"submit", :value=>"Update Page"}
+
+%form{:action=>"/"+@page.url,:method=>"post"}
+  %input{:type=>"hidden", :name=>"_method", :value="delete"}
+  %input{:type=>"submit", :value=>"Delete Page"}

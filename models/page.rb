@@ -3,15 +3,20 @@ class Page
    #TODO finish create
    def self.create(page)
      p = Page.new
-     p.url = page[url]
-     p.title = page[title]
-     p.description = page[description]
-     p.keywords = page[keywords]
-     p.content = page[content]
+     p.url = page[:url]
+     p.title = page[:title]
+     p.description = page[:description]
+     p.keywords = page[:keywords]
+     p.content = page[:content]
      p.save
-     puts p.to_yaml
      p
    end
+
+   #TODO do update
+   def self.update(url,page)
+
+   end
+   
    def save
      new_file = !File.exists?("#{QREPOSITORY_PATH}/#{@url}.yaml")
      File.open("#{QREPOSITORY_PATH}/#{@url}.yaml", "w") { |file| YAML.dump(self, file) }
@@ -29,10 +34,12 @@ class Page
    end
    
    def self.find(url)
+     raise QuirkyException if !File.exists?("#{QREPOSITORY_PATH}/#{url}.yaml")
      YAML.load(File.open("#{QREPOSITORY_PATH}/#{url}.yaml"))
    end
    
    def self.destroy(url)
+     raise QuirkyException if !File.exists?("#{QREPOSITORY_PATH}/#{url}.yaml")
      g = Git.init QREPOSITORY_PATH
      g.remove("#{QREPOSITORY_PATH}/#{url}.yaml");
      g.commit("#{url} Deleted")
