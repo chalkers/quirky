@@ -2,6 +2,34 @@
 
 Quriky is Content Management System (CMS) built on Sinatra and git.
 
+== Installation
+
+  sudo gem install Git sinatra
+
+  git clone ###
+
+  cd quirky
+
+  rake init
+
+or simply
+
+  rake
+
+== Gems
+
+To require any aditional gems modify the boot.rb
+
+== Models
+
+If you want to include your own models place them in the models directory
+
+== Test Suite
+
+If you need to write your own tests place them in the test folder and run the rake task test.
+
+  rake test
+
 == License
 THE MIT LICENSE
 
@@ -21,5 +49,5 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-http://creativecommons.org/licenses/MIT/
+http://creativecommons.org/licenses/MIT
 
