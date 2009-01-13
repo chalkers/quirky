@@ -16,13 +16,25 @@ get "/:url.html" do
 end
 
 get "/new" do
+  @page = Page.new
+  @page.url = ".html"
+  haml :new
 end
 
 post "/" do
+  p = Page.create(params)
+  redirect "/#{p.url}"
+end
+
+get "/update/:url.html" do
 end
 
 put "/:url.html" do
+  p = Page.update(params[:url],params[:page])
+  redirect "/#{p.url}"
 end
 
 delete "/:url.html" do
+  Page.destroy(params[:url] + ".html")
+  redirect "/"
 end

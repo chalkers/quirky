@@ -1,0 +1,9 @@
+%form{:action=>"/",:method=>"post"}
+  -%w{url title description keywords}.each do |f|
+    %label{:for=>"page_#{f}"}=f.capitalize
+    %input{:type=>"text",:id=>"page_#{f}", :name=>"page[#{f}]",:value=>@page.send(f)}
+    %br
+  %label{:for=>"page_content"} Content
+  %textarea{:type=>"text",:id=>"page_content", :name=>"page[content]"}=@page.content
+  %br
+  %input{:type=>"submit", :value=>"Save"}
