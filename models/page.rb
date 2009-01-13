@@ -1,5 +1,6 @@
 class Page
    attr_accessor :url, :title, :description, :keywords, :content
+   #TODO finish create
    def self.create(page)
      p = Page.new
      p.url = page[url]
@@ -16,10 +17,14 @@ class Page
      File.open("#{QREPOSITORY_PATH}/#{@url}.yaml", "w") { |file| YAML.dump(self, file) }
      g = Git.init QREPOSITORY_PATH
      g.add("#{QREPOSITORY_PATH}/#{@url}.yaml")
+     begin
      if new_file
        g.commit("#{@url} Created")
      else
        g.commit("#{@url} Updated")
+     end
+     rescue Git::GitExecuteError
+         #TODO       
      end
    end
    

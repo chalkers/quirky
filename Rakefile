@@ -10,3 +10,8 @@ task :init do
     page.content = "h1. You've done it.\n\nYou've installed quirky!"
     page.save
 end
+
+desc "Loads test suite"
+task :test do
+    Dir["tests/**/*.rb"].each { |test| load test }
+end
