@@ -65,10 +65,4 @@ class PageTest < Test::Unit::TestCase
         assert !File.exist?(QREPOSITORY_PATH + "/#{@page_url}.yaml"), "File #{@page_url}.yaml still exist"
     end
 
-    def test_4_destroy_error
-        assert_raises QuirkyException, LoadError do
-          Page.destroy(@page_url +" ")
-        end
-    end
-
 end

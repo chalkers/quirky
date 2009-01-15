@@ -1,20 +1,13 @@
 class Page
    attr_accessor :url, :title, :description, :keywords, :content
-   #TODO finish create
-   def self.create(page)
+
+   def self.save(params)
      p = Page.new
-     p.url = page[:url]
-     p.title = page[:title]
-     p.description = page[:description]
-     p.keywords = page[:keywords]
-     p.content = page[:content]
+     params.each do |param,value|
+       p.send("#{param.to_s}=",value) if p.methods.include? "#{param.to_s}="
+     end
      p.save
      p
-   end
-
-   #TODO do update
-   def self.update(url,page)
-
    end
    
    def save
@@ -39,10 +32,10 @@ class Page
    end
    
    def self.destroy(url)
-     raise QuirkyException if !File.exists?("#{QREPOSITORY_PATH}/#{url}.yaml")
-     g = Git.init QREPOSITORY_PATH
-     g.remove("#{QREPOSITORY_PATH}/#{url}.yaml");
-     g.commit("#{url} Deleted")
-     nil
+     if File.exists?("#{QREPOSITORY_PATH}/#{url}.yaml")
+        g = Git.init QREPOSITORY_PATH
+        g.remove("#{QREPOSITORY_PATH}/#{url}.yaml");
+        g.commit("#{url} Deleted")
+     end
    end
 end

@@ -4,9 +4,9 @@ task :default => :init
 
 desc "Initialise the application"
 task :init do
-  if(!File.exists?(QREPOSITORY_PATH+"/index.html.yaml"))
+  if(!File.exists?(QREPOSITORY_PATH+"/index.yaml"))
     page = Page.new
-    page.url = "index.html"
+    page.url = "index"
     page.title = "Congratulations!"
     page.content = "h1. You've done it.\n\nYou've installed quirky!"
     page.keywords = "amazing, super, awesome"

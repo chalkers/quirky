@@ -1,6 +1,13 @@
 %w{boot sinatra}.each {|lib| require lib}
 
-#TODO Update and create actions. Security/authentication.
+#TODO Security/authentication. Branching site. Git remote adding and removing.
+# =>  Previewing. Better error handling. Sitemap generation. Admin section.
+
+helpers do
+  def partial(partial, options={})
+        haml partial, options.merge!(:layout => false)
+  end
+end
 
 get "/" do
   redirect "/index.html"
@@ -8,7 +15,7 @@ end
 
 get "/:url.html" do
   begin
-    @page = Page.find(params[:url] + ".html") 
+    @page = Page.find(params[:url]) 
   rescue QuirkyException
     throw :halt, [404, "File not found"]
   end
@@ -18,18 +25,17 @@ end
 
 get "/new" do
   @page = Page.new
-  @page.url = ".html"
   haml :new
 end
 
 post "/" do
-  p = Page.create(params[:page])
-  redirect "/#{p.url}"
+  p = Page.save(params)
+  redirect "/#{p.url}.html"
 end
 
 get "/update/:url.html" do
   begin
-    @page = Page.find(params[:url] + ".html")
+    @page = Page.find(params[:url])
   rescue QuirkyException
     throw :halt, [404, "File not found"]
   end
@@ -38,11 +44,11 @@ get "/update/:url.html" do
 end
 
 put "/:url.html" do
-  p = Page.update(params[:url],params[:page])
-  redirect "/#{p.url}"
+  p = Page.save(params)
+  redirect "/#{p.url}.html"
 end
 
 delete "/:url.html" do
-  Page.destroy(params[:url] + ".html")
+  Page.destroy(params[:url])
   redirect "/"
 end
