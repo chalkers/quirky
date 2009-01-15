@@ -7,7 +7,7 @@ before do
   
 end
 
-error QuirkyException do
+error QuirkyNotFoundException do
   throw :halt, [404, "File not found"]
 end
 

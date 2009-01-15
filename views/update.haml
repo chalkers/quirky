@@ -1,3 +1,4 @@
+%h1=  "Update Page  '#{@page.title}' #{@page}.html"
 %form{:action => "/"+@page.name+".html", :method => "post"}
   %input{:type => "hidden", :name => "_method", :value => "put"}
   = partial :form

@@ -83,7 +83,7 @@ class PageTest < Test::Unit::TestCase
   end
 
   def test_2_find_error
-    assert_raise QuirkyException, LoadError do 
+    assert_raise QuirkyNotFoundException, LoadError do 
       Page.find(@page_name + " ")
     end
   end
