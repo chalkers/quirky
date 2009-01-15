@@ -1,5 +1,5 @@
 class QuirkyException < RuntimeError
-    def message()
+    def message
         "Quirky fell over"
     end
 end

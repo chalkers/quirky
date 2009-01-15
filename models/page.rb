@@ -1,9 +1,11 @@
 class Page
    attr_accessor :name, :title, :description, :keywords, :content
-
-   def self.save(params)
+   REQUIRED_FIELDS = [:name,:title,:description, :content]
+   
+   def self.save(args)
+     raise QuirkyRequirdFieldsException if (REQUIRED_FIELDS - args.keys).size > 0
      p = Page.new
-     params.each do |param,value|
+     args.each do |param,value|
        p.send("#{param.to_s}=",value) if p.methods.include? "#{param.to_s}="
      end
      p.save
@@ -11,6 +13,7 @@ class Page
    end
    
    def save
+     raise QuirkyRequirdFieldsException if !is_valid?
      new_file = !File.exists?("#{QREPOSITORY_PATH}/#{@name}.yaml")
      File.open("#{QREPOSITORY_PATH}/#{@name}.yaml", "w") { |file| YAML.dump(self, file) }
      g = Git.init QREPOSITORY_PATH
@@ -37,5 +40,18 @@ class Page
         g.remove("#{QREPOSITORY_PATH}/#{name}.yaml");
         g.commit("#{name} Deleted")
      end
+   end
+   
+   def is_valid?
+     valid = false
+     REQUIRED_FIELDS.each do |sym|
+       valid = !send(sym.to_s).nil? && send(sym.to_s) != ""
+       break if !valid
+     end
+     valid
+   end
+   
+   def to_s
+     @name
    end
 end
