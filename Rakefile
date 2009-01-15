@@ -18,6 +18,7 @@ task :init do
 end
 
 desc "Loads test suite"
+QREPOSITORY_PATH = FileUtils.pwd + "/tmp/system"
 task :test do
     Dir["tests/**/*.rb"].each { |test| load test }
 end

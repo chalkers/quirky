@@ -4,6 +4,8 @@ require "boot"
 class PageTest < Test::Unit::TestCase
 
   def setup
+    FileUtils.mkdir_p QREPOSITORY_PATH unless File.exists? QREPOSITORY_PATH
+    
     @page_name = "test.html"
     @page_title = "Page Title"
     @page_content = "h1. Test h1.\n\nContent"
