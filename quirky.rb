@@ -1,3 +1,4 @@
+QREPOSITORY_PATH = FileUtils.pwd + "/system"
 %w{boot sinatra}.each {|lib| require lib}
 
 #TODO Validation. Security/authentication. Branching site. Git remote adding and removing.

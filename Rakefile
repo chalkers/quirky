@@ -1,9 +1,8 @@
-require 'boot'
-
 task :default => :init
 
 desc "Initialise the application"
 task :init do
+  require 'boot'
   if(!File.exists?(QREPOSITORY_PATH+"/index.yaml"))
     Page.save(
       :name => "index",
@@ -19,6 +18,7 @@ end
 
 desc "Loads test suite"
 QREPOSITORY_PATH = FileUtils.pwd + "/tmp/system"
+require 'boot'
 task :test do
     Dir["tests/**/*.rb"].each { |test| load test }
 end
