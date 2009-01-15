@@ -13,9 +13,9 @@ get "/" do
   redirect "/index.html"
 end
 
-get "/:url.html" do
+get "/:name.html" do
   begin
-    @page = Page.find(params[:url]) 
+    @page = Page.find(params[:name]) 
   rescue QuirkyException
     throw :halt, [404, "File not found"]
   end
@@ -30,25 +30,25 @@ end
 
 post "/" do
   p = Page.save(params)
-  redirect "/#{p.url}.html"
+  redirect "/#{p.name}.html"
 end
 
-get "/update/:url.html" do
+get "/update/:name.html" do
   begin
-    @page = Page.find(params[:url])
+    @page = Page.find(params[:name])
   rescue QuirkyException
-    throw :halt, [404, "File not found"]
+    throw :hanlt, [404, "File not found"]
   end
 
   haml :update
 end
 
-put "/:url.html" do
+put "/:name.html" do
   p = Page.save(params)
-  redirect "/#{p.url}.html"
+  redirect "/#{p.name}.html"
 end
 
-delete "/:url.html" do
-  Page.destroy(params[:url])
+delete "/:name.html" do
+  Page.destroy(params[:name])
   redirect "/"
 end

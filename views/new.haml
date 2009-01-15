@@ -1,6 +1,6 @@
 %form{:action => "/", :method => "post"}
-  %label{:for => "page_url"} Url
-  %input{:type=> "text", :id =>  "page_url", :name => "url",:value=>@page.url}
+  %label{:for => "page_name"} Page Name
+  %input{:type=> "text", :id =>  "page_name", :name => "name",:value=>@page.name}
   %br
   = partial :form
   %input{:type=>"submit", :value=>"Save"}

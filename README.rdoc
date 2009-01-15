@@ -10,19 +10,27 @@ Quriky is Content Management System (CMS) built on Sinatra and git.
 
   cd quirky
 
-  rake init
-
-or simply
-
   rake
+
+The default rake task is init.
+
+Init creates a index file in your system folder in the root of the quirky directory. This also initialises the content repository (the system folder).
+
+== Run
+
+  "ruby quirky.rb" 
+
+== Managing Conent
+
+Point your browser to http://localhost:4567/new to create or http://localhost:4567/update/<name>.html to update/delete the page named <name>.
 
 == Gems
 
-To require any additional gems modify the boot.rb
+To require any additional gems modify the boot.rb.
 
-== Models
+== Models, Unpacked Gems et al.
 
-If you want to include your own models place them in the models directory
+If you want to include your own models place them in the models directory. Other custom dependancies can be placed in the lib folder.
 
 == Test Suite
 
