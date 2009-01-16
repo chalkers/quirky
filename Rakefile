@@ -17,8 +17,8 @@ task :init do
 end
 
 desc "Loads test suite"
-QREPOSITORY_PATH = FileUtils.pwd + "/tmp/system"
-require 'boot'
 task :test do
+    QREPOSITORY_PATH = FileUtils.pwd + "/tmp/system"
+    require 'boot'
     Dir["tests/**/*.rb"].each { |test| load test }
 end
